@@ -5,11 +5,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+        tr {
+            border: 1px solid black;
+        }
+
+        td,
+        th {
+            padding: 20px 40px;
+            border: 1px solid black;
+        }
+
+        thead tr:nth-child(1) {
+            background-color: #df4e92;
+        }
+
+        tr:nth-child(2) {
+            background-color: #df4e92;
+        }
+
+        tr:active {
+            background-color: #78435c;
+        }
+    </style>
 </head>
 
 <body>
-
-
+    <details>
+        <summary>点击查看</summary>
+        <span>水水水水水</span>
+    </details>
+    <table>
+        <thead>
+            <tr>
+                <th>1</th>
+                <th>1</th>
+                <th>1</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>
