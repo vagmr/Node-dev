@@ -1,0 +1,122 @@
+[
+    {
+        "singerName": "周杰伦",
+        "sing_pic": "https://x128.bailemi.com/attachment/20180716/nwCGD5ak7RAmb7NXpKdzB8MZEhxPdBpX.jpg?size=290*290",
+        "otherName": "",
+        "id": "1"
+    },
+    {
+        "singerName": "蔡依林",
+        "sing_pic": "https://example.com/singer1.jpg",
+        "otherName": "",
+        "id": "2"
+    },
+    {
+        "singerName": "王力宏",
+        "sing_pic": "https://example.com/singer2.jpg",
+        "otherName": "",
+        "id": "3"
+    },
+    {
+        "singerName": "林俊杰",
+        "sing_pic": "https://example.com/singer3.jpg",
+        "otherName": "JJ",
+        "id": "4"
+    },
+    {
+        "singerName": "李宇春",
+        "sing_pic": "https://example.com/singer4.jpg",
+        "otherName": "",
+        "id": "5"
+    },
+    {
+        "singerName": "陈奕迅",
+        "sing_pic": "https://example.com/singer5.jpg",
+        "otherName": "Eason",
+        "id": "6"
+    },
+    {
+        "singerName": "Taylor Swift",
+        "sing_pic": "https://example.com/singer6.jpg",
+        "otherName": "",
+        "id": "7"
+    },
+    {
+        "singerName": "Adele",
+        "sing_pic": "https://example.com/singer7.jpg",
+        "otherName": "",
+        "id": "8"
+    },
+    {
+        "singerName": "Beyoncé",
+        "sing_pic": "https://example.com/singer8.jpg",
+        "otherName": "",
+        "id": "9"
+    },
+    {
+        "singerName": "Ed Sheeran",
+        "sing_pic": "https://example.com/singer9.jpg",
+        "otherName": "",
+        "id": "10"
+    },
+    {
+        "singerName": "Rihanna",
+        "sing_pic": "https://example.com/singer10.jpg",
+        "otherName": "",
+        "id": "11"
+    },
+    {
+        "singerName": "Justin Bieber",
+        "sing_pic": "https://example.com/singer11.jpg",
+        "otherName": "",
+        "id": "12"
+    },
+    {
+        "singerName": "Katy Perry",
+        "sing_pic": "https://example.com/singer12.jpg",
+        "otherName": "",
+        "id": "13"
+    },
+    {
+        "singerName": "Bruno Mars",
+        "sing_pic": "https://example.com/singer13.jpg",
+        "otherName": "",
+        "id": "14"
+    },
+    {
+        "singerName": "Lady Gaga",
+        "sing_pic": "https://example.com/singer14.jpg",
+        "otherName": "",
+        "id": "15"
+    },
+    {
+        "singerName": "Ariana Grande",
+        "sing_pic": "https://example.com/singer15.jpg",
+        "otherName": "",
+        "id": "16"
+    },
+    {
+        "singerName": "Shawn Mendes",
+        "sing_pic": "https://example.com/singer16.jpg",
+        "otherName": "",
+        "id": "17"
+    },
+    {
+        "singerName": "Billie Eilish",
+        "sing_pic": "https://example.com/singer17.jpg",
+        "otherName": "",
+        "id": "18"
+    },
+    {
+        "singerName": "Dua Lipa",
+        "sing_pic": "https://example.com/singer18.jpg",
+        "otherName": "",
+        "id": "19"
+    },
+    {
+        "singerName": "Post Malone",
+        "sing_pic": "https://example.com/singer19.jpg",
+        "otherName": "",
+        "id": "20"
+    }
+]

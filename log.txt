@@ -1,0 +1,15 @@
+/ 	 ::1
+/favicon.ico 	 ::1
+/login 	 ::1
+/page 	 ::1
+/page 	 ::1
+/page 	 ::1
+/admin 	 ::1
+/ 	 ::1
+/test.html 	 ::1
+/test.css 	 ::1
+/test.js 	 ::1
+/test.css 	 ::1
+/test.html 	 ::1
+/test.css 	 ::1
+/test.js 	 ::1

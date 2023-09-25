@@ -71,6 +71,28 @@
             </tr>
         </tbody>
     </table>
+    <button class="sent">发送请求</button>
+    <div class="list"></div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.querySelector('.sent').onclick = () => {
+        new axios({
+            method: 'get',
+            url: 'http://127.0.0.1:3000/1.rs',
+            data: {
+                username: 'vagmr',
+            }
+        }).then(res => {
+            let { id, sing_pic, singerName } = res.data.data
+            document.querySelector('.list').innerHTML = `
+             <h1>${singerName}</h1>
+             <img src="${sing_pic}" alt="">
+             <span>${id}</span>
+            `
+        })
+    }
+
+</script>
 
 </html>
