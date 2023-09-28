@@ -1,4 +1,4 @@
-[
+{"books": [
     {
         "name": "Book 1",
         "price": 10,
@@ -100,3 +100,4 @@
         "author": "Author 20"
     }
 ]
+} 

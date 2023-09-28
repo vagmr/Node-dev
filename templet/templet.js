@@ -4,18 +4,21 @@
  * @returns {*} {mongo, connect}
  */
 const mongo = require('mongoose');
+const config = {
+    DbHost: "127.0.0.1",
+    DbPort: "27017",
+    DbName: "vagmr"
+}
 
-const connect = function (success, err) {
-    mongo.connect("mongodb://127.0.0.1:27017/vagmr");
+const connect = function (success, err = () => console.log("连接失败"), configs = config) {
+    mongo.connect(`mongodb://${configs.DbHost}:${configs.DbPort}/${configs.DbName}`);
     mongo.connection.once('open', () => {
         console.log("连接成功");
         success()
 
     });
-    mongo.connection.on('error', (err) => {
-        console.log('发生错误');
-        console.log(err);
-        err()
+    mongo.connection.on('error', () => {
+        err?.()
     })
     mongo.connection.on('close', () => {
         console.log('连接关闭');

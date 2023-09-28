@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>填写记账</title>
+    <link rel="stylesheet" href="../stylesheets/ac.css">
+    <script src="../javascripts/form-serialize.js"></script>
+</head>
+<body>
+<div class="box-border w-1/3 h-3/4 mx-auto ">
+<h1 class="text-3xl text-center text-gray-700 mb-4">欢迎使用记账本</h1>
+<form class="flex flex-col gap-3 accForm">
+    <label for="event">事项</label>
+    <input type="text" 
+    id="event" name="事项" placeholder="请输入事项"
+    class="px-0 w-full border-blue-400 border rounded-md py-2 text-gray-900 focus:outline-rose-400 items-center">
+    <label for="time">发生时间</label>
+    <input type="date" 
+    id="time" name="时间" placeholder="请输入发生时间"
+    class="px-0  w-full border-blue-400 border rounded-md py-2 text-gray-900  focus:outline-rose-400 items-center">
+    <label for="type">类型</label>
+    <select type="text" 
+    id="type" name="类型" placeholder="请输入类型" 
+    class="px-0  w-full border-blue-400 border rounded-md py-2 text-gray-900 focus:outline-rose-400 items-center">
+        <option value="-1">支出</option>
+        <option value="1">收入</option>
+    </select>
+    <label for="money">金额</label>
+    <input type="text" id="money" name="金额" placeholder="请输入金额"
+    class="px-0  w-full border-blue-400 border rounded py-2 text-gray-900  focus:outline-rose-400 items-center">
+    <label for="msg"></label>
+    <textarea id="msg" name="备注" class="border-blue-400 border h-20"></textarea>
+    <button type="button"
+    class=" w-full mt-6 py-2  rounded bg-blue-500 text-gray-100  focus:outline-none">
+    <a class="btn_submit">
+    提交</a></button>
+</form>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.btn_submit').addEventListener('click', async   (event) => {
+                event.preventDefault(); // 阻止表单的默认提交行为
+                console.log('执行');
+                const form = document.querySelector('.accForm');
+                const data =  await serialize(form, { hash: true, empty: true });
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/detail');
+                xhr.addEventListener('loadend',() => {
+                    if(xhr.status === 200){
+                         document.open(); // 清除当前页面内容
+                        document.write(xhr.response); // 替换为服务器返回的HTML响应
+                        document.close();
+                    }else{
+                        console.log('error');
+                    }
+                })
+                 xhr.setRequestHeader('content-type', 'application/json');
+                xhr.send(JSON.stringify(data));
+            });
+        });
+</script>
+</body>
+</html>

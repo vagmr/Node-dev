@@ -1,0 +1,46 @@
+body{
+    background: url(../images/11.jpg) no-repeat;
+}
+header{
+    text-align: center;
+    margin: 30px auto;
+    border: 2px solid rgb(59, 221, 236);
+    background-color: rgb(8, 7, 8);
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+}
+h1{
+    font-family: "楷书";
+    font-size: 20px;
+    color: red;
+}
+section{
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 400px;
+    background-color: teal;
+    height: 200px
+}
+section h3{
+    font-family: "宋体";
+    font-size: 30px;
+    margin-top: 40px;
+}
+section button{
+    padding: 20px;
+    margin-top: 20px;
+    background-color: aquamarine;
+}
+section:hover{
+    background-color: rgb(201, 27, 114);
+}
+section button:hover{
+    background-color: rgb(248, 142, 36);
+    transform: translateY(-5px);
+    box-shadow: 2px 6px 2px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
