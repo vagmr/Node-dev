@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path');
-const accModel = require('../../../../templet/modules/accountM');
+const accModel = require('../../../templet/modules/accountM');
 // const low = require('lowdb');
 // const shortid = require('shortid');
 

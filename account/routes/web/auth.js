@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path');
-const userModel = require('../../../../templet/modules/userModel');
+const userModel = require('../../../templet/modules/userModel');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 //导入md5对密码进行加密
@@ -42,6 +42,8 @@ router.post('/login',(req,res) => {
     let {username,password} = req.body;
     //在数据库中查找对应的用户名和加密后的密码
     userModel.findOne({username,password:md5(password)}).then(result => {
+        req.session.username = result.username;
+        req.session.uid = result._id;
         res.render('success',{msg:"登录成功",url:'/detail',data:{respond:{id:result._id}}});
     }).catch(() => {
         res.render('error',{message:"登录失败,用户名或密码错误",error:{status:'error',stack:this.stack}});
