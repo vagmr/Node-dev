@@ -6,7 +6,8 @@
   "author": "vagmr",
   "main": "setCookie.js",
   "scripts": {
-    "dev": "nodemon setCookie.js"
+    "dev": "nodemon setCookie.js",
+    "run": "node setCookie.js"
   },
   "keywords": [],
   "license": "ISC",
