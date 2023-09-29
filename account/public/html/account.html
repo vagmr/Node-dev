@@ -6,6 +6,7 @@
     <title>填写记账</title>
     <link rel="stylesheet" href="../stylesheets/ac.css">
     <script src="../javascripts/form-serialize.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.0/axios.min.js"></script>
 </head>
 <body>
 <div class="box-border w-1/3 h-3/4 mx-auto ">
@@ -39,24 +40,32 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('.btn_submit').addEventListener('click', async   (event) => {
+            document.querySelector('.btn_submit').addEventListener('click',    (event) => {
                 event.preventDefault(); // 阻止表单的默认提交行为
                 console.log('执行');
                 const form = document.querySelector('.accForm');
-                const data =  await serialize(form, { hash: true, empty: true });
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', '/detail');
-                xhr.addEventListener('loadend',() => {
-                    if(xhr.status === 200){
-                         document.open(); // 清除当前页面内容
-                        document.write(xhr.response); // 替换为服务器返回的HTML响应
-                        document.close();
-                    }else{
-                        console.log('error');
-                    }
-                })
-                 xhr.setRequestHeader('content-type', 'application/json');
-                xhr.send(JSON.stringify(data));
+                const sdata =  serialize(form, { hash: true, empty: true });
+                console.log(sdata);
+                new axios({
+                    method:'post',
+                    url: '/detail',
+                    data: sdata
+                }).then(res => {
+                    document.open(); // 清除当前页面内容
+                    document.write(res.data); // 替换为服务器返回的HTML响应
+                    document.close();
+                }).catch(() => console.log('error'));
+                // const xhr = new XMLHttpRequest();
+                // xhr.open('POST', '/detail');
+                // xhr.addEventListener('loadend',() => {
+                //     if(xhr.status === 200){
+                       
+                //     }else{
+                //         console.log('error');
+                //     }
+                // })
+                //  xhr.setRequestHeader('content-type', 'application/json');
+                // xhr.send(JSON.stringify(data));
             });
         });
 </script>

@@ -18,7 +18,6 @@ router.get('/account', function (req, res, next) {
 })
 router.get('/detail', function (req, res, next) {
     accModel.find().sort({时间:-1}).then(list => {
-        console.log(list);
         res.render('detail', { list });
     }).catch(err => {
         res.status(500).send(err);
@@ -27,7 +26,6 @@ router.get('/detail', function (req, res, next) {
 })
 router.post('/detail', function (req, res, next) {
     accModel.create({...req.body,时间:new Date(req.body.时间)}).then((result) => {
-        console.log(result);
         res.render('success',
             { msg: '成功', url: '/detail', data: { respond: { data: 'ok', msg: '响应成功', id:result._id  } } })
     })

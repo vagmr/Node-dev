@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册页面</title>
+    <!-- 引入 Bootstrap CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- 引入 Bootstrap JS 文件 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            /* 添加背景颜色 */
+        }
+
+        .container {
+            background-color: #ffffff;
+            /* 注册表单容器背景色 */
+            border-radius: 10px;
+            /* 边框圆角 */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            /* 阴影效果 */
+            padding: 30px;
+            margin-top: 100px;
+        }
+
+        h2 {
+            text-align: center;
+            /* 标题居中 */
+        }
+
+        .btn-primary {
+            width: 100%;
+            /* 注册按钮宽度100% */
+            padding: 15px;
+            /* 增加内边距 */
+            background-color: #007bff;
+            /* 按钮背景颜色 */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            /* 鼠标悬停时的颜色 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="mb-4">注册</h2>
+                <form method="post" action="/auth">
+                    <div class="form-group">
+                        <label for="username">用户名</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="请输入邮箱">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">确认密码</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="请再次输入密码">
+                    </div>
+                    <button type="submit" class="btn btn-primary ">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>
