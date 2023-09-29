@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path');
+//使用token保护接口
+const jwt = require('jsonwebtoken');
 const accModel = require('../../../templet/modules/accountM');
 // const low = require('lowdb');
 // const shortid = require('shortid');
@@ -10,6 +12,30 @@ const accModel = require('../../../templet/modules/accountM');
 const adapter = new FileSync(path.join(__dirname, '../data/db.json'));
 const db = low(adapter) */
 /* GET home page. */
+//定义中间件
+let checkToken = (req,res,next) => {
+    let token = req.get('vagmr_key');
+    if(!token){
+        return res.json({
+            code:'2001',
+            msg:'token缺失',
+            data:null
+        })
+    }
+    jwt.verify(token, 'vagmr', (err,data) => {
+        if(err){
+            return res.json({
+                code:'2002',
+                msg:'token验证失败',
+                data:null
+            })
+        }
+        //保存用户信息
+        req.info = data;
+        next()
+    })
+}
+
 router.get('/', function (req, res, next) {
     // res.render('index', { title: 'Express' }); 不使用ejs
     fileName = path.join(__dirname, '../../public', 'html/index.html');
@@ -19,8 +45,9 @@ router.get('/account', function (req, res, next) {
     fileName = path.join(__dirname, '../../public', 'html/account.html');
     res.sendFile(fileName);
 })
-router.get('/detail', function (req, res, next) {
+router.get('/detail',checkToken ,function (req, res, next) {
     accModel.find().sort({ 时间: -1 }).then(list => {
+        console.log(req.info);
         res.json({
             code:"0000",
             msg:"查询成功",
@@ -36,7 +63,7 @@ router.get('/detail', function (req, res, next) {
 
 })
 //获取单条记账
-router.get('/detail/:id', function (req, res, next) {
+router.get('/detail/:id',checkToken, function (req, res, next) {
     qid = req.params.id
     accModel.findById(qid).then(list => {
         res.json({
@@ -53,7 +80,7 @@ router.get('/detail/:id', function (req, res, next) {
     })
 
 })
-router.post('/detail', function (req, res, next) {
+router.post('/detail',checkToken, function (req, res, next) {
     accModel.create({ ...req.body, 时间: new Date(req.body.时间) }).then((result) => {
        res.json({
            code: '0000',
@@ -67,7 +94,7 @@ router.post('/detail', function (req, res, next) {
 
 
 })
-router.delete('/detail/:id', (req, res) => {
+router.delete('/detail/:id',checkToken, (req, res) => {
     let qid = req.params.id;
     accModel.deleteOne({ _id: qid }).then((result) => {
         res.json({
@@ -83,7 +110,7 @@ router.delete('/detail/:id', (req, res) => {
     );
 
 })
-router.patch('/detail/:id',(req,res) => {
+router.patch('/detail/:id',checkToken,(req,res) => {
     let qid = req.params.id;
     accModel.updateOne({ _id: qid }, req.body).then((result) => {
         res.json({

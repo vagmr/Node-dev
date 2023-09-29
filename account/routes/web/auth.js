@@ -2,24 +2,10 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 const userModel = require('../../../templet/modules/userModel');
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
+
 //导入md5对密码进行加密
 const md5 = require('md5');
-//使用中间件
-router.use(session({
-    name:'uid', //session的名字
-    secret:'vagmr', //密钥
-    saveUninitialized:false,//在不需要session时，是否生成session
-    resave:true, //每次请求都更新session
-    store:MongoStore.create({ //创建session仓库
-        mongoUrl:'mongodb://127.0.0.1:27017/vagmr' //仓库地址
-    }),
-    cookie:{
-        httpOnly:true,//禁止前端通过document.cookie获取操作
-        maxAge:60 * 1000 * 60 //保存一个小时
-    }
-}))
+
 //注册页面
 router.get('/auth',(req,res) => {
     res.render('auth');
@@ -29,7 +15,7 @@ router.post('/auth',(req,res) => {
     userModel.create({...req.body,password:md5(req.body.password)}).then(result => {
         res.render('success',{msg:"注册成功",url:'/login',data:{respond:{id:result._id}}});
     }).catch(() => {
-        res.render('error');
+        res.render('loginerror',{msg:'请填写完整信息',url:'/auth'});
     })
 })
 //登录页面
@@ -46,7 +32,13 @@ router.post('/login',(req,res) => {
         req.session.uid = result._id;
         res.render('success',{msg:"登录成功",url:'/detail',data:{respond:{id:result._id}}});
     }).catch(() => {
-        res.render('error',{message:"登录失败,用户名或密码错误",error:{status:'error',stack:this.stack}});
+        res.render('loginerror',{msg:"用户名或密码错误",url:'/auth'});
+    })
+})
+//退出登录操作，改成post规避跨站攻击
+router.get('/logout',(req,res) => {
+    req.session.destroy(() => {
+        res.render('success',{msg:"退出成功",url:'/',data:{respond:{id:null}}});
     })
 })
 module.exports = router;

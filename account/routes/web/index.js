@@ -4,7 +4,14 @@ const path = require('path');
 const accModel = require('../../../templet/modules/accountM');
 // const shortid = require('shortid');
 
-
+//定于中间件，让未登录的页面重定向到登录页面
+let checkLogin = (req,res,next) => {
+    if(!req.session.uid){
+        res.redirect('/login');
+    }else{
+        next();
+    }
+}
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -12,11 +19,11 @@ router.get('/', function (req, res, next) {
     fileName = path.join(__dirname, '../../public', 'html/index.html');
     res.sendFile(fileName);
 });
-router.get('/account', function (req, res, next) {
+router.get('/account',checkLogin, function (req, res, next) {
     fileName = path.join(__dirname, '../../public', 'html/account.html');
     res.sendFile(fileName);
 })
-router.get('/detail', function (req, res, next) {
+router.get('/detail', checkLogin, function (req, res, next) {
     accModel.find().sort({时间:-1}).then(list => {
         res.render('detail', { list });
     }).catch(err => {
@@ -24,7 +31,7 @@ router.get('/detail', function (req, res, next) {
     })
     
 })
-router.post('/detail', function (req, res, next) {
+router.post('/detail', checkLogin, function (req, res, next) {
     accModel.create({...req.body,时间:new Date(req.body.时间)}).then((result) => {
         res.render('success',
             { msg: '成功', url: '/detail', data: { respond: { data: 'ok', msg: '响应成功', id:result._id  } } })
@@ -36,7 +43,7 @@ router.post('/detail', function (req, res, next) {
     
     
 })
-router.get('/detail/:id',(req,res) => {
+router.get('/detail/:id', checkLogin,(req,res) => {
     let qid = req.params.id;
     accModel.deleteOne({_id:qid}).then(() => {
         res.render('success', { msg: '删除成功', url: '/detail', data: { respond: { data: 'ok', msg: '响应成功', id: qid } } });
